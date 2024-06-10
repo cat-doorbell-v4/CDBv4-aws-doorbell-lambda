@@ -1,12 +1,7 @@
 import json
-import logging
 import os
 
 import boto3
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
 
 # Initialize boto3 client for SNS
 sns_client = boto3.client('sns')
@@ -16,6 +11,7 @@ SNS_TOPIC_ARN = os.getenv('SNS_TOPIC_ARN')
 
 
 def lambda_handler(event, context):
+    print(f"Received event: {event}")
     try:
         # Get the HTTP method and path
         http_method = event['httpMethod']
@@ -31,7 +27,7 @@ def lambda_handler(event, context):
                 'body': json.dumps({'message': 'Not Found'})
             }
     except Exception as e:
-        logger.error(f"Error processing request: {e}")
+        print(f"Error processing request: {e}")
         return {
             'statusCode': 500,
             'body': json.dumps({'message': 'Internal Server Error'})
@@ -46,13 +42,13 @@ def handle_ring(event):
             Message=json.dumps({'default': json.dumps(message)}),
             MessageStructure='json'
         )
-        logger.info(f"SNS response: {sns_response}")
+        print(f"SNS response: {sns_response}")
         return {
             'statusCode': 200,
             'body': json.dumps({'message': 'SNS message sent successfully'})
         }
     except Exception as e:
-        logger.error(f"Error sending SNS message: {e}")
+        print(f"Error sending SNS message: {e}")
         return {
             'statusCode': 500,
             'body': json.dumps({'message': 'Failed to send SNS message'})
@@ -62,13 +58,13 @@ def handle_ring(event):
 def handle_heartbeat(event):
     try:
         message = json.loads(event['body'])
-        logger.info(f"Heartbeat received: {message}")
+        print(f"Heartbeat received: {message}")
         return {
             'statusCode': 200,
             'body': json.dumps({'message': 'Heartbeat logged successfully'})
         }
     except Exception as e:
-        logger.error(f"Error logging heartbeat: {e}")
+        print(f"Error logging heartbeat: {e}")
         return {
             'statusCode': 500,
             'body': json.dumps({'message': 'Failed to log heartbeat'})
