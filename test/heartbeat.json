@@ -1,0 +1,78 @@
+{
+  "resource": "/heartbeat",
+  "path": "/heartbeat",
+  "httpMethod": "POST",
+  "headers": {
+    "accept-encoding": "gzip",
+    "content-type": "application/json; charset=UTF-8",
+    "Host": "eq1qnupb76.execute-api.us-east-1.amazonaws.com",
+    "User-Agent": "okhttp/4.9.0",
+    "X-Amzn-Trace-Id": "Root=1-6668335c-7b64b1d822373012676b90ab",
+    "X-Forwarded-For": "69.247.28.223",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+    "accept-encoding": [
+      "gzip"
+    ],
+    "content-type": [
+      "application/json; charset=UTF-8"
+    ],
+    "Host": [
+      "eq1qnupb76.execute-api.us-east-1.amazonaws.com"
+    ],
+    "User-Agent": [
+      "okhttp/4.9.0"
+    ],
+    "X-Amzn-Trace-Id": [
+      "Root=1-6668335c-7b64b1d822373012676b90ab"
+    ],
+    "X-Forwarded-For": [
+      "69.247.28.223"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ]
+  },
+  "queryStringParameters": "None",
+  "multiValueQueryStringParameters": "None",
+  "pathParameters": "None",
+  "stageVariables": "None",
+  "requestContext": {
+    "resourceId": "th76d9",
+    "resourcePath": "/heartbeat",
+    "httpMethod": "POST",
+    "extendedRequestId": "ZMz2iF1SoAMEc7w=",
+    "requestTime": "11/Jun/2024:11:22:04 +0000",
+    "path": "/prod1/heartbeat",
+    "accountId": "657592885771",
+    "protocol": "HTTP/1.1",
+    "stage": "prod1",
+    "domainPrefix": "eq1qnupb76",
+    "requestTimeEpoch": 1718104924709,
+    "requestId": "687434dc-edad-49df-81d6-185a27705046",
+    "identity": {
+      "cognitoIdentityPoolId": "None",
+      "accountId": "None",
+      "cognitoIdentityId": "None",
+      "caller": "None",
+      "sourceIp": "69.247.28.223",
+      "principalOrgId": "None",
+      "accessKey": "None",
+      "cognitoAuthenticationType": "None",
+      "cognitoAuthenticationProvider": "None",
+      "userArn": "None",
+      "userAgent": "okhttp/4.9.0",
+      "user": "None"
+    },
+    "domainName": "eq1qnupb76.execute-api.us-east-1.amazonaws.com",
+    "deploymentId": "q4gm6t",
+    "apiId": "eq1qnupb76"
+  },
+  "body": "{\"message\":\"Garage-Cat-Doorbell\"}",
+  "isBase64Encoded": "False"
+}

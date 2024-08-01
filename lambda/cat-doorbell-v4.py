@@ -13,14 +13,15 @@ SNS_TOPIC_ARN = os.getenv('SNS_TOPIC_ARN')
 def lambda_handler(event, context):
     print(f"Received event: {event}")
     try:
-        # Get the HTTP method and path
         http_method = event['httpMethod']
         path = event['path']
+        device_quoted = event['body']
+        device = device_quoted.replace('"', '')
 
         if http_method == 'POST' and path == '/ring':
-            return handle_ring(event)
+            return handle_ring(device)
         elif http_method == 'POST' and path == '/heartbeat':
-            return handle_heartbeat(event)
+            return handle_heartbeat(device)
         else:
             return {
                 'statusCode': 404,
@@ -34,9 +35,10 @@ def lambda_handler(event, context):
         }
 
 
-def handle_ring(event):
+def handle_ring(hostname):
     try:
-        message = json.loads(event['body'])
+        print(f"CDBv4-001I {hostname} ring received")
+        message = f"{hostname} is ringing"
         sns_response = sns_client.publish(
             TopicArn=SNS_TOPIC_ARN,
             Message=json.dumps({'default': json.dumps(message)}),
@@ -55,10 +57,9 @@ def handle_ring(event):
         }
 
 
-def handle_heartbeat(event):
+def handle_heartbeat(hostname):
     try:
-        message = json.loads(event['body'])
-        print(f"Heartbeat received: {message}")
+        print(f"CDBv4-002I {hostname} heartbeat received")
         return {
             'statusCode': 200,
             'body': json.dumps({'message': 'Heartbeat logged successfully'})
