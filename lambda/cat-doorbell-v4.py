@@ -38,11 +38,10 @@ def lambda_handler(event, context):
 def handle_ring(hostname):
     try:
         print(f"CDBv4-001I {hostname} ring received")
-        message = f"{hostname} is ringing"
+        message = f"{hostname} 📳"
         sns_response = sns_client.publish(
             TopicArn=SNS_TOPIC_ARN,
-            Message=json.dumps({'default': json.dumps(message)}),
-            MessageStructure='json'
+            Message=message
         )
         print(f"SNS response: {sns_response}")
         return {
